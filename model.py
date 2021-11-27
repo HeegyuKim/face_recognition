@@ -70,17 +70,17 @@ class FashionMnistNet(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(2),
             # 14x14x8
-            nn.Conv2d(8, 16, 3, padding=1, bias=False),
+            nn.Conv2d(8, 64, 3, padding=1, bias=False),
             nn.ReLU(),
             nn.MaxPool2d(2),
             # 7x7x16
-            nn.Conv2d(16, 64, 3, padding=1, bias=False),
+            nn.Conv2d(16, 128, 3, padding=1, bias=False),
             nn.ReLU(),
             # 1x1x64
             GeM(p_trainable=True)
         )
         self.head = nn.Sequential(
-            nn.Linear(64, 10),
+            nn.Linear(128, 10),
             nn.Softmax()
         )
         
