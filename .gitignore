@@ -1,3 +1,10 @@
+# for Google Colab
+drive/
+sample_data/
+dataset/
+data/
+raw/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
