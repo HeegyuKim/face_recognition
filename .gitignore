@@ -4,6 +4,8 @@ sample_data/
 dataset/
 data/
 raw/
+tmp.png
+comet-default/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
