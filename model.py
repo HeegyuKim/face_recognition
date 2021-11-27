@@ -74,9 +74,9 @@ class FashionMnistNet(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(2),
             # 7x7x16
-            nn.Conv2d(16, 128, 3, padding=1, bias=False),
+            nn.Conv2d(64, 128, 3, padding=1, bias=False),
             nn.ReLU(),
-            # 1x1x64
+            # 1x1x128
             GeM(p_trainable=True)
         )
         self.head = nn.Sequential(
@@ -86,7 +86,7 @@ class FashionMnistNet(nn.Module):
         
     def forward(self, x):
         x = x.view(-1, 1, 28, 28)
-        emb = self.model(x).view(-1, 64)
+        emb = self.model(x).view(-1, 128)
         logits = self.head(emb)
         return {
             "embeddings": emb, 
