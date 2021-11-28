@@ -11,6 +11,7 @@ from torchvision import transforms
 from PIL import Image
 import pandas as pd
 
+from efficientnet_pytorch import EfficientNet
 
 
 # Generalizing Pooling
@@ -92,4 +93,19 @@ class FashionMnistNet(nn.Module):
             "embeddings": emb, 
             "logits": logits
         }
+
+# https://smecsm.tistory.com/240
+# https://dacon.io/en/codeshare/3105
+
+class FashionMnistEfficientNet(nn.Module):
+  def __init__(self):
+    super().__init__()
+    self.input = nn.Conv2d(1, 3, 3, padding=1, bias=False)
+    self.pretrained = EfficientNet.from_pretrained('efficientnet-b4', num_classes=10)
+    
+  def forward(self, x):
+    x = self.input(x)
+    embs = self.pretrained.extract_features(x).view(-1, 1792)
+    logits = self.pretrained(x)
+    return {"embeddings": embs, "logits": logits}
 
