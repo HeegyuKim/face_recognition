@@ -16,6 +16,3 @@ def save_pca_plot(data, labels):
 def save_umap_plot(data, labels):
   mapper = umap.UMAP().fit(data)
   return umap.plot.points(mapper, labels=labels)
-
-save_umap_plot(np.random.rand(1500, 5), np.array([1, 2, 3] * 500))
-plt.savefig("./tmp.png")
